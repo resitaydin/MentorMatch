@@ -1,6 +1,7 @@
-Here’s the complete README in Markdown format:
+Here’s a revised version of the README for your project:
 
-```markdown
+---
+
 # Mentor Matching Assistant
 
 The **Mentor Matching Assistant** leverages the **Groq API** and a pre-trained language model (LLM) to convert user mentor search criteria into structured JSON queries. It integrates with Firebase and uses environment variables for API key management, along with the `dotenv` library for local development.
@@ -125,6 +126,3 @@ Make sure Firestore is set up in your Google Cloud project, and that the service
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
-
-This complete Markdown version includes everything from setup instructions to details about the API, core functions, and Firebase setup.
