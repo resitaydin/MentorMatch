@@ -134,7 +134,7 @@ def parse_query_for_firestore(query):
         firestore_query["languages"] = query["preferredLanguage"]
 
     if query.get("experienceLevel"):
-        firestore_query["experience_level"] = query["experienceLevel"].lower()
+        firestore_query["experience_level"] = query["experienceLevel"]
 
     if query.get("availability"):
         availability = 0 # 0: no availability, 1: weekdays, 3: weekends, 2: weekdays and weekends
@@ -224,4 +224,33 @@ def example_query():
 
 @app.get("/")
 def read_root():
+    user_prompt = "I need a female English teacher aged 30-40, available online, under $30/hour with at least 4.5 rating"
+    print("User Prompt:" + user_prompt + "\n")
+    query = generate_search_query(user_prompt)
+    print("Query:" + str(query) + "\n")
+    query = parse_query_for_firestore(query)
+    print("Parsed Query:" + str(query) + "\n")
+    results = execute_firestore_query(query)
+    print("Results:" + str(results) + "\n")
+    # photo_urls = [
+    #     "https://img.freepik.com/free-photo/portrait-handsome-young-man-with-arms-crossed-holding-white-headphone-around-his-neck_23-2148096439.jpg?semt=ais_hybrid",
+    #     "https://img.freepik.com/free-photo/portrait-smiling-young-businesswoman-standing-with-her-arm-crossed-against-gray-wall_23-2147943827.jpg?semt=ais_hybrid",
+    #     "https://img.freepik.com/free-photo/waist-up-shot-smart-confident-stylish-girl-with-curly-hair-combed-bun-standing-profile-gazing-glasses_176420-24692.jpg?semt=ais_hybrid",
+    #     "https://img.freepik.com/free-photo/serious-businessman-sitting-table-portrait-minimalism-style-profile_155003-27926.jpg?semt=ais_hybrid",
+    #     "https://img.freepik.com/free-photo/woman-portrait-with-blue-lights-visual-effects_23-2149419525.jpg?semt=ais_hybrid"
+    # ]
+    # # change photo urls for all mentors in database
+    # mentor_ref = db.collection('mentors')
+    # i = 0
+    # for doc in mentor_ref.stream():
+    #     doc = doc.to_dict()
+    #     doc["photo-url"] = photo_urls[i]
+    #     i = (i + 1) % len(photo_urls)
+    #     mentor_ref.document(doc["name"]).set(doc)
+
+    # add data to firestore
+    # mentor_ref = db.collection('mentors')
+    # mentor_ref.add({"hourly_price": 42, "age": 54, "experience_level": 5, "languages": ["german", "english"], "other_details": "Science enthusiast with hands-on lab experience.", "available_online": True, "photo-url": "https://cdn.corporatefinanceinstitute.com/assets/temporary-account-1024x513.jpeg", "profession_area": "science", "rating": 3.9, "availability": 1, "gender": "female", "location": "london", "name": "Alice Martin"})
+    # mentor_ref.add({"hourly_price": 88, "age": 38, "experience_level": 2, "languages": ["english"], "other_details": "Science enthusiast with hands-on lab experience.", "available_online": True, "photo-url": "https://cdn.corporatefinanceinstitute.com/assets/temporary-account-1024x513.jpeg", "profession_area": "programming", "rating": 3.1, "availability": 2, "gender": "female", "location": "berlin", "name": "Maria Gonzalez"})
+    # mentor_ref.add({"hourly_price": 24, "age": 25, "experience_level": 4, "languages": ["french", "japanese"], "other_details": "Science enthusiast with hands-on lab experience.", "available_online": False, "photo-url": "https://cdn.corporatefinanceinstitute.com/assets/temporary-account-1024x513.jpeg", "profession_area": "science", "rating": 4.7, "availability": 3, "gender": "female", "location": "berlin", "name": "Emily Davis"} )
     return {"Hello": "World"}
