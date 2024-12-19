@@ -166,21 +166,34 @@ def execute_firestore_query(firestore_query):
 
     if 'profession_area' in firestore_query:
         query = query.where(filter=FieldFilter('profession_area', '==', firestore_query['profession_area']))
+    else :
+        print("No profession area specified")
+        return []
 
     if 'minRating' in firestore_query:
         query = query.where(filter=FieldFilter('rating', '>=', firestore_query['minRating']))
+    else:
+        query = query.where(filter=FieldFilter('rating', '>=', 0))
 
     if 'maxPrice' in firestore_query:
         query = query.where(filter=FieldFilter('hourly_price', '<=', firestore_query['maxPrice']))
+    else:
+        query = query.where(filter=FieldFilter('hourly_price', '<=', 1_000_000))
 
     if 'location' in firestore_query:
         query = query.where(filter=FieldFilter('location', '==', firestore_query['location']))
+    else:
+        query = query.where(filter=FieldFilter('location', '!=', ''))
 
     if 'onlineFlexible' in firestore_query:
         query = query.where(filter=FieldFilter('available_online', '==', firestore_query['onlineFlexible']))
+    else:
+        query = query.where(filter=FieldFilter('available_online', '!=', ''))
 
     if 'languages' in firestore_query:
         query = query.where(filter=FieldFilter('languages', 'array_contains_any', firestore_query['languages']))
+    else:
+        query = query.where(filter=FieldFilter('languages', 'array_contains_any', ['english', 'french', 'spanish', 'german', 'italian', 'portuguese', 'russian', 'chinese', 'japanese', 'korean', 'arabic', 'mandarin']))
 
     if 'availability' in firestore_query:
         if firestore_query['availability'] == 1:
@@ -189,15 +202,27 @@ def execute_firestore_query(firestore_query):
             query = query.where(filter=FieldFilter('availability', '==', 2))
         elif firestore_query['availability'] == 3:
             query = query.where(filter=FieldFilter('availability', '>=', 2))
+    else:
+        query = query.where(filter=FieldFilter('availability', '>', 0))
 
     if 'experience_level' in firestore_query:
         query = query.where(filter=FieldFilter('experience_level', '>=', firestore_query['experience_level']))
+    else:
+        query = query.where(filter=FieldFilter('experience_level', '>=', 0))
 
     if 'minAge' in firestore_query and 'maxAge' in firestore_query:
         query = query.where(filter=BaseCompositeFilter('AND', [FieldFilter('age', '>=', firestore_query['minAge']), FieldFilter('age', '<=', firestore_query['maxAge'])]))
+    elif 'minAge' in firestore_query:
+        query = query.where(filter=FieldFilter('age', '>=', firestore_query['minAge']))
+    elif 'maxAge' in firestore_query:
+        query = query.where(filter=FieldFilter('age', '<=', firestore_query['maxAge']))
+    else:
+        query = query.where(filter=FieldFilter('age', '>=', 0))
 
     if 'gender' in firestore_query:
         query = query.where(filter=FieldFilter('gender', '==', firestore_query['gender']))
+    else:
+        query = query.where(filter=FieldFilter('gender', '!=', ''))
 
     results = query.stream()
     return [doc.to_dict() for doc in results]
