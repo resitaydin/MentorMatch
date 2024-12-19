@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from groq import Groq
 import json
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
@@ -13,13 +14,22 @@ from google.cloud.firestore_v1.base_query import FieldFilter
 from google.cloud.firestore_v1.base_query import BaseCompositeFilter
 
 # Path to your service account key file
-key_path = "/Users/saitbilen/Documents/GitHub/MentorMatch/serviceAccountKey.json"
+key_path = "/Users/HAKAN/Documents/GitHub/MentorMatch/serviceAccountKey.json"
 
 # Load credentials
 credentials = service_account.Credentials.from_service_account_file(key_path)
 
 # Initialize Firestore client
 db = firestore.Client(credentials=credentials)
+
+# CORS middleware to allow requests from specific origins
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:8501"],  # Allow requests from localhost:8501
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Load environment variables
 load_dotenv()
