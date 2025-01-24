@@ -1,20 +1,36 @@
-Here’s a revised version of the README for your project:
+# Mentor Matching Platform
 
----
-
-# Mentor Matching Assistant
-
-The **Mentor Matching Assistant** leverages the **Groq API** and a pre-trained language model (LLM) to convert user mentor search criteria into structured JSON queries. It integrates with Firebase and uses environment variables for API key management, along with the `dotenv` library for local development.
+The **Mentor Matching Platform** is designed to connect mentees with suitable mentors by leveraging advanced AI-powered technologies and structured data management. This platform ensures efficient mentor-mentee matching through user-friendly interfaces and robust backend support.
 
 ---
 
 ## Features
-- Converts user inputs into structured JSON queries for mentor matching.
-- Ensures compatibility with Firebase by adhering to strict field formatting rules.
-- Supports advanced filtering options, including profession, experience level, availability, and more.
-- Provides an API for querying mentor data from Firestore.
+
+Features
+- AI-Powered Query Handling:
+Utilizes a pre-trained language model (LLM) to intelligently process user inputs and convert them into structured JSON queries. This ensures accurate and efficient mentor matching tailored to user preferences.
+
+- User-Friendly Mentor Search:
+Allows users to input their mentor search criteria through an intuitive interface, which is then processed into structured queries for effective matching.
+
+- Structured Data Management:
+Ensures compatibility with Firebase by adhering to strict field formatting rules for seamless data storage and retrieval.
+
+- Advanced Filtering Options:
+Supports comprehensive filtering, enabling users to search for mentors based on various criteria such as profession, experience level, availability, and more.
+
+- API Integration:
+Provides a robust API for querying mentor data from Firestore, facilitating easy integration with other applications and services.
+
+- Environment Variable Management:
+Employs environment variables for secure API key management, utilizing the dotenv library for streamlined local development and configuration.
+
+This platform leverages the power of AI to enhance user experience and deliver highly personalized mentor matching results. By combining advanced filtering, structured data, and the intelligence of LLMs, users can find the most suitable mentor matches tailored to their specific needs.
 
 ---
+
+## Demo Video 
+[Link](https://drive.google.com/file/d/1V6pfH6EGgLMSXsiuTVIIBPHPMqdyrK21/view?usp=drivesdk)
 
 ## Prerequisites
 Before setting up the project, ensure you have the following:
@@ -27,38 +43,41 @@ Before setting up the project, ensure you have the following:
    - `json`
    - `fastapi`
    - `google-cloud-firestore`
-
+   - `uvicorn`
 ---
 
 ## Setup Instructions
 
-1. Clone the repository:
+1. Install the required libraries:
    ```bash
-   git clone <repository_url>
-   cd <repository_directory>
+   pip install dotenv groq json fastapi google-cloud-firestore uvicorn
    ```
 
-2. Install the required libraries:
-   ```bash
-   pip install dotenv groq json fastapi google-cloud-firestore
-   ```
-
-3. Set up environment variables for the **Groq API Key** by creating a `.env` file in the project root and adding:
+2. Set up environment variables for the **Groq API Key** by creating a `.env` file in the project root and adding:
    ```env
    GROQ_API_KEY=your_api_key_here
    ```
 
-4. Ensure your Google Cloud Firestore service account key is available. Set the path to the service account key in your code:
+3. Ensure your Google Cloud Firestore service account key is available. Set the path to the service account key in your code:
    ```python
    key_path = "/path/to/your/serviceAccountKey.json"
    ```
 
-5. Run the application:
+4. Go to 'source_codes/backend' and open up a new terminal then run the backend:
    ```bash
-   python main.py
+   uvicorn main:app --reload
    ```
-
+5. Go to /frontend/src and open up another terminal then run the frontend:
+   ```bash
+   npm i
+   npm run dev
+   ```
+6. Open up the localhost from a browser:
+   ```bash
+   http://localhost:8501/
+   ```
 ---
+7. Now you're ready to use the application!
 
 ## API Endpoints
 
