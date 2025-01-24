@@ -1,28 +1,36 @@
-# Mentor Matching Platform
+# MentorMatch - AI-Powered Mentor Matching Platform
 
-The **Mentor Matching Platform** is designed to connect mentees with suitable mentors by leveraging advanced AI-powered technologies and structured data management. This platform ensures efficient mentor-mentee matching through user-friendly interfaces and robust backend support.
+The **MentorMatch** is designed to connect mentees with suitable mentors by leveraging advanced AI-powered technologies and structured data management. This platform ensures efficient mentor-mentee matching through user-friendly interfaces and robust backend support.
 
 ---
 
+### MentorMatch - Home Page
+![ss1](screenshots/mentorMatch1.png)
+
+### Mentor Matching Example Screenshot - I (Light Mode)
+![ss2](screenshots/mentorMatch2.png)
+
+### Mentor Matching Example Screenshot - II (Dark Mode)
+![ss3](screenshots/mentorMatch3.png)
+
 ## Features
 
-Features
-- AI-Powered Query Handling:
+- **AI-Powered Query Handling:**
 Utilizes a pre-trained language model (LLM) to intelligently process user inputs and convert them into structured JSON queries. This ensures accurate and efficient mentor matching tailored to user preferences.
 
-- User-Friendly Mentor Search:
+- **User-Friendly Mentor Search:**
 Allows users to input their mentor search criteria through an intuitive interface, which is then processed into structured queries for effective matching.
 
-- Structured Data Management:
+- **Structured Data Management:**
 Ensures compatibility with Firebase by adhering to strict field formatting rules for seamless data storage and retrieval.
 
-- Advanced Filtering Options:
+- **Advanced Filtering Options:**
 Supports comprehensive filtering, enabling users to search for mentors based on various criteria such as profession, experience level, availability, and more.
 
-- API Integration:
+- **API Integration:**
 Provides a robust API for querying mentor data from Firestore, facilitating easy integration with other applications and services.
 
-- Environment Variable Management:
+- **Environment Variable Management:**
 Employs environment variables for secure API key management, utilizing the dotenv library for streamlined local development and configuration.
 
 This platform leverages the power of AI to enhance user experience and deliver highly personalized mentor matching results. By combining advanced filtering, structured data, and the intelligence of LLMs, users can find the most suitable mentor matches tailored to their specific needs.
@@ -36,7 +44,7 @@ This platform leverages the power of AI to enhance user experience and deliver h
 Before setting up the project, ensure you have the following:
 
 1. Python 3.8+  
-2. **Groq API Key**  
+2. Groq API Key
 3. Required Python libraries:
    - `dotenv`
    - `groq`
@@ -139,6 +147,13 @@ The query will be formatted and sent to Firestore, where mentors matching the cr
 ## Firebase Setup
 
 Make sure Firestore is set up in your Google Cloud project, and that the service account key file is correctly linked to the application.
+
+---
+
+## Authors
+- **Reşit Aydın** [https://github.com/resitaydin]
+- **Ahmet Said Bilen** [https://github.com/murassa]
+- **Ahmet Hakan Sevinç** [https://github.com/Ahmet-Hakan]
 
 ---
 
